@@ -12,7 +12,7 @@ function Movies() {
   const { length: count } = item;
   return count !== 0 ? (
     <div>
-      <h5>The {count} number of Movies in the Database</h5>
+      <h5>The {count} number of Movies in the Databases</h5>
       <table className="table table-striped">
         <thead>
           <tr>
