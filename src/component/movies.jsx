@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 import { getMovies } from "../services/fakeMovieService";
-import Heart from "./heart";
+import Heart from "./common/heart";
+import Pagination from "./common/pagination";
 
 function Movies() {
   const [item, setMovie] = useState(getMovies());
+  const [currentPage, setPage] = useState(1);
 
+  const page = { pageSize: 3 };
+
+  /// handle
   const handleDelete = (id) => {
     const itemList = item.filter((movie) => movie._id !== id);
     setMovie(itemList);
+  };
+
+  /// Pages Changing
+  const handlePageChange = (paged) => {
+    // console.log(page);
+    setPage(paged);
   };
 
   const { length: count } = item;
@@ -48,6 +59,13 @@ function Movies() {
           ))}
         </tbody>
       </table>
+
+      <Pagination
+        itemCount={count}
+        pageSize={page.pageSize}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   ) : (
     <h6>There is No Movie in the List</h6>
